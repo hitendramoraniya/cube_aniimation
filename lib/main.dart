@@ -43,6 +43,7 @@ class SquareAnimationState extends State<SquareAnimation> {
     });
   }
 
+
   void _leftSideAnimation() {
     setState(() {
       if (_isAlignedRight) {
