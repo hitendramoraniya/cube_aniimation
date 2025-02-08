@@ -35,7 +35,7 @@ class SquareAnimationState extends State<SquareAnimation> {
 
   void _rightSideAnimation() {
     setState(() {
-      if (!_isAlignedRight) {
+      if (!_isAlignedRight || _isStartingPosition) {
         _isAnimationRunning = true;
         _isAlignedRight = true;
         _isStartingPosition = false;
@@ -45,7 +45,7 @@ class SquareAnimationState extends State<SquareAnimation> {
 
   void _leftSideAnimation() {
     setState(() {
-      if (_isAlignedRight) {
+      if (_isAlignedRight || _isStartingPosition) {
         _isAnimationRunning = true;
         _isAlignedRight = false;
         _isStartingPosition = false;
@@ -67,8 +67,8 @@ class SquareAnimationState extends State<SquareAnimation> {
           alignment: _isStartingPosition
               ? Alignment.center
               : _isAlignedRight
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
+                  ? Alignment.centerRight
+                  : Alignment.centerLeft,
           child: Container(
             width: _squareSize,
             height: _squareSize,
@@ -86,7 +86,7 @@ class SquareAnimationState extends State<SquareAnimation> {
               child: const Text('Left'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: !_isStartingPosition &&
-                    (!_isAlignedRight || _isAnimationRunning)
+                        (!_isAlignedRight || _isAnimationRunning)
                     ? Colors.grey
                     : Colors.white,
               ),
@@ -97,7 +97,7 @@ class SquareAnimationState extends State<SquareAnimation> {
               child: const Text('Right'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: !_isStartingPosition &&
-                    (_isAlignedRight || _isAnimationRunning)
+                        (_isAlignedRight || _isAnimationRunning)
                     ? Colors.grey
                     : Colors.white,
               ),
